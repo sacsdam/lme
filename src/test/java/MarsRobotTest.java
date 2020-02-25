@@ -64,4 +64,74 @@ public class MarsRobotTest {
     }
 
 
+    @Test
+    public void canRunCommandToRotateRight() {
+        //Given
+        Grid grid = new Grid(5,3);
+        Coordinates startingPosition = new Coordinates(1,1);
+        MarsRobot marsRobot = new MarsRobot(grid, Direction.N, startingPosition);
+
+        //When
+        marsRobot.run("R");
+
+        //then
+        Assert.assertEquals("1 1 E", marsRobot.currentLocation());
+    }
+
+    @Test
+    public void canRunCommandToRotateLeft() {
+        //Given
+        Grid grid = new Grid(5,3);
+        Coordinates startingPosition = new Coordinates(1,1);
+        MarsRobot marsRobot = new MarsRobot(grid, Direction.N, startingPosition);
+
+        //When
+        marsRobot.run("L");
+
+        //then
+        Assert.assertEquals("1 1 W",marsRobot.currentLocation());
+    }
+
+    @Test
+    public void canRunCommandToMove() {
+        //Given
+        Grid grid = new Grid(5,3);
+        Coordinates startingPosition = new Coordinates(1,1);
+        MarsRobot marsRobot = new MarsRobot(grid, Direction.N, startingPosition);
+
+        //When
+        marsRobot.run("F");
+
+        //then
+        Assert.assertEquals("1 2 N", marsRobot.currentLocation());
+    }
+
+    @Test
+    public void canRunCommandWithMultipleInstructions() {
+        //Given
+        Grid grid = new Grid(5,5);
+        Coordinates startingPosition = new Coordinates(3,3);
+        MarsRobot marsRobot = new MarsRobot(grid, Direction.E, startingPosition);
+
+        //When
+        marsRobot.run("FFRFFRFRRF");
+
+        //then
+        Assert.assertEquals("5 1 E", marsRobot.currentLocation());
+    }
+
+    @Test
+    public void robotLostOffGrid() {
+        //Given
+        Grid grid = new Grid(5,5);
+        Coordinates startingPosition = new Coordinates(3,3);
+        MarsRobot marsRobot = new MarsRobot(grid, Direction.N, startingPosition);
+
+        //When
+        marsRobot.run("FFFFFFFFFFR");
+
+        //then
+        Assert.assertEquals("3 5 ELOST", marsRobot.currentLocation());
+    }
+
 }

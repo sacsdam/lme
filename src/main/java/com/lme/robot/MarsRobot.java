@@ -1,14 +1,19 @@
 package com.lme.robot;
 
+import com.lme.robot.commands.CommandParser;
+import com.lme.robot.commands.ICommand;
 import com.lme.robot.planet.Coordinates;
 import com.lme.robot.planet.Direction;
 import com.lme.robot.planet.Grid;
+
+import java.util.List;
 
 public class MarsRobot {
 
     private Coordinates currentCoordinates;
     private Direction currentDirection;
     private Grid grid;
+    boolean isOffGrid = false;
 
 
     public MarsRobot(final Grid grid, final Direction direction, final Coordinates coordinates) {
@@ -18,7 +23,8 @@ public class MarsRobot {
     }
 
     public String currentLocation() {
-        return currentCoordinates.toString() + " " + currentDirection.toString();
+
+        return isOffGrid ?currentCoordinates.toString() + " " + currentDirection.toString()+ "LOST" : currentCoordinates.toString() + " " + currentDirection.toString() ;
     }
     public void turnLeft() {
         this.currentDirection = this.currentDirection.left();
@@ -34,7 +40,14 @@ public class MarsRobot {
 
         if(grid.isWithinBounds(positionAfterMove))
             currentCoordinates = currentCoordinates.getNewCoordinatesFor(currentDirection.stepSizeForXAxis(), currentDirection.stepSizeForYAxis());
+        else
+            isOffGrid = true;
+
     }
 
 
+    public void run(final String commandString) {
+        List<ICommand> roverCommands = new CommandParser(commandString).toCommands();
+        roverCommands.forEach(command -> command.execute(this));
+    }
 }
