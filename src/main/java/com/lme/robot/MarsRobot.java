@@ -25,4 +25,7 @@ public class MarsRobot {
     }
 
 
+    public void turnRight() {
+        this.currentDirection = this.currentDirection.right();
+    }
 }

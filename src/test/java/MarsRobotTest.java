@@ -35,5 +35,19 @@ public class MarsRobotTest {
         Assert.assertEquals("1 1 W", marsRobot.currentLocation());
     }
 
+    @Test
+    public void canRotateRight() {
+        //Given
+        Grid plateau = new Grid(5,3);
+        Coordinates startingPosition = new Coordinates(1,1);
+        MarsRobot marsRobot = new MarsRobot(plateau, Direction.N, startingPosition);
+
+        //When
+        marsRobot.turnRight();
+
+        //then
+        Assert.assertEquals("1 1 E", marsRobot.currentLocation());
+    }
+
 
 }
