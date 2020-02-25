@@ -1,0 +1,23 @@
+import com.lme.robot.MarsRobot;
+import com.lme.robot.planet.Coordinates;
+import com.lme.robot.planet.Direction;
+import com.lme.robot.planet.Grid;
+import org.junit.Assert;
+import org.junit.Test;
+
+public class MarsRobotTest {
+
+
+    @Test
+    public void canProvideCurrentLocationAsString() {
+        //Given
+        Grid grid = new Grid(5,3);
+        Coordinates startingPosition = new Coordinates(1,1);
+
+        //When
+        MarsRobot marsRobot = new MarsRobot(grid, Direction.E, startingPosition);
+
+        //then
+        Assert.assertEquals("1 1 E", marsRobot.currentLocation());
+    }
+}
