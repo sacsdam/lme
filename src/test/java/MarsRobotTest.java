@@ -20,4 +20,20 @@ public class MarsRobotTest {
         //then
         Assert.assertEquals("1 1 E", marsRobot.currentLocation());
     }
+
+    @Test
+    public void canRotateLeft() {
+        //Given
+        Grid grid = new Grid(5,3);
+        Coordinates startingPosition = new Coordinates(1,1);
+        MarsRobot marsRobot = new MarsRobot(grid, Direction.N, startingPosition);
+
+        //When
+        marsRobot.turnLeft();
+
+        //then
+        Assert.assertEquals("1 1 W", marsRobot.currentLocation());
+    }
+
+
 }

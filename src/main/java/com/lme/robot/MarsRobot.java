@@ -20,7 +20,9 @@ public class MarsRobot {
     public String currentLocation() {
         return currentCoordinates.toString() + " " + currentDirection.toString();
     }
-
+    public void turnLeft() {
+        this.currentDirection = this.currentDirection.left();
+    }
 
 
 }
