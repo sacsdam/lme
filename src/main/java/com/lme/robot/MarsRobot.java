@@ -28,4 +28,13 @@ public class MarsRobot {
     public void turnRight() {
         this.currentDirection = this.currentDirection.right();
     }
+
+    public void move() {
+        Coordinates positionAfterMove = currentCoordinates.getNewCoordinatesForStepSize(currentDirection.stepSizeForXAxis(), currentDirection.stepSizeForYAxis());
+
+        if(grid.isWithinBounds(positionAfterMove))
+            currentCoordinates = currentCoordinates.getNewCoordinatesFor(currentDirection.stepSizeForXAxis(), currentDirection.stepSizeForYAxis());
+    }
+
+
 }

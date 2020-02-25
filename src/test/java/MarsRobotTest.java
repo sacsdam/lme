@@ -38,15 +38,29 @@ public class MarsRobotTest {
     @Test
     public void canRotateRight() {
         //Given
-        Grid plateau = new Grid(5,3);
+        Grid grid = new Grid(5,3);
         Coordinates startingPosition = new Coordinates(1,1);
-        MarsRobot marsRobot = new MarsRobot(plateau, Direction.N, startingPosition);
+        MarsRobot marsRobot = new MarsRobot(grid, Direction.N, startingPosition);
 
         //When
         marsRobot.turnRight();
 
         //then
         Assert.assertEquals("1 1 E", marsRobot.currentLocation());
+    }
+
+    @Test
+    public void canMoveForward() {
+        //Given
+        Grid grid = new Grid(5,3);
+        Coordinates startingPosition = new Coordinates(1,1);
+        MarsRobot marsRobot = new MarsRobot(grid, Direction.N, startingPosition);
+
+        //When
+        marsRobot.move();
+
+        //then
+        Assert.assertEquals("1 2 N", marsRobot.currentLocation());
     }
 
 

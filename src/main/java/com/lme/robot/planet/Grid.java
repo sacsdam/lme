@@ -8,4 +8,12 @@ public class Grid {
     public Grid(final int topRightXCoordinate, final int topRightYCoordinate) {
         this.topRightCoordinates = this.topRightCoordinates.getNewCoordinatesFor(topRightXCoordinate, topRightYCoordinate);
     }
+
+    public boolean isWithinBounds(final Coordinates coordinates) {
+        return this.bottomLeftCoordinates.isOutsideBounds(coordinates) && this.topRightCoordinates.isWithinBounds(coordinates);
+    }
+
+
+
+
 }
